@@ -41,7 +41,7 @@ public class MyController {
         return ResponseEntity.ok(supplyPartnerService.findAllSupplyPartners());
     }
 
-    @GetMapping("/native")
+    @GetMapping("/demand")
     public ResponseEntity<HashMap<String, Object>> getNativeProducts(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String app_bundle,
