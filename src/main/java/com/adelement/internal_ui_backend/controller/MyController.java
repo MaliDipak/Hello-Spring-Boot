@@ -45,13 +45,13 @@ public class MyController {
     public ResponseEntity<HashMap<String, Object>> getNativeProducts(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String app_bundle,
-            @RequestParam(required = false) String demand_partner_id,
+            @RequestParam(required = false) String code,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
         HashMap<String, Object> data = demandApprovalService
                 .getDemandsApprovalStatusWithDemandPartnerCodeWithPaginationAndFilter(status, app_bundle,
-                        demand_partner_id, page, size);
+                        code, page, size);
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
@@ -60,13 +60,13 @@ public class MyController {
     public ResponseEntity<HashMap<String, Object>> getSupplyApprovalStatusRecords(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String app_bundle,
-            @RequestParam(required = false) String supply_partner_id,
+            @RequestParam(required = false) String code,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
         HashMap<String, Object> data = supplyApprovalService
                 .getSupplyApprovalStatusWithSupplyPartnerCodeWithPaginationAndFilter(status, app_bundle,
-                        supply_partner_id, page, size);
+                        code, page, size);
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }

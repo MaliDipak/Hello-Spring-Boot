@@ -14,5 +14,5 @@ public interface DemandApprovalService {
                         int page, int size);
 
         HashMap<String, Object> getDemandsApprovalStatusWithDemandPartnerCodeWithPaginationAndFilter(String status,
-                        String app_bundle, String demand_partner_id, int page, int size);
+                        String app_bundle, String code, int page, int size);
 }

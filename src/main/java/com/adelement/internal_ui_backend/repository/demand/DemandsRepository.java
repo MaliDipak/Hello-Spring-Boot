@@ -7,5 +7,5 @@ import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
 
 @Repository
 public interface DemandsRepository extends JpaRepository<DemandsEntity, Long> {
-
+    DemandsEntity findByCode(String code);
 }

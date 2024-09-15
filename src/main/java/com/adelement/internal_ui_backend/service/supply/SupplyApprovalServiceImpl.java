@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adelement.internal_ui_backend.entity.supply.SupplyApprovalEntity;
+import com.adelement.internal_ui_backend.entity.supply.SupplyPartnerEntity;
 import com.adelement.internal_ui_backend.model.supply.SupplyApprovalStatusDTO;
 
 import com.adelement.internal_ui_backend.repository.supply.SupplyPartnerRepository;
@@ -105,7 +106,17 @@ public class SupplyApprovalServiceImpl implements SupplyApprovalService {
 
     @Override
     public HashMap<String, Object> getSupplyApprovalStatusWithSupplyPartnerCodeWithPaginationAndFilter(String status,
-            String app_bundle, String supply_partner_id, int page, int size) {
+            String app_bundle, String code, int page, int size) {
+
+        String supply_partner_id = null;
+        if (code != null && !code.isEmpty()) {
+            SupplyPartnerEntity spe = supplyPartnerRepository.findByCode(code);
+            if (spe != null) {
+                supply_partner_id = spe.getId().toString();
+            } else {
+                supply_partner_id = "0";
+            }
+        }
 
         List<SupplyApprovalEntity> results = getFilteredAndPaginatedData(status, app_bundle, supply_partner_id, page,
                 size);
@@ -114,7 +125,7 @@ public class SupplyApprovalServiceImpl implements SupplyApprovalService {
 
         for (SupplyApprovalEntity supplyApprovalEntityItem : results) {
 
-            String code = supplyPartnerRepository.findById(supplyApprovalEntityItem.getSupply_partner_id()).get()
+            String code_ = supplyPartnerRepository.findById(supplyApprovalEntityItem.getSupply_partner_id()).get()
                     .getCode();
             Long id = supplyApprovalEntityItem.getId();
             Long supplyPartnerID = supplyApprovalEntityItem.getSupply_partner_id();
@@ -124,7 +135,7 @@ public class SupplyApprovalServiceImpl implements SupplyApprovalService {
             String date_updated = supplyApprovalEntityItem.getDate_updated();
 
             SupplyApprovalStatusDTO supplyApprovalStatusDTO = new SupplyApprovalStatusDTO(id, supplyPartnerID,
-                    appBundle, lineStatus, line_inserted, date_updated, code);
+                    appBundle, lineStatus, line_inserted, date_updated, code = code_);
 
             supplyApprovalStatusDTOsList.add(supplyApprovalStatusDTO);
         }

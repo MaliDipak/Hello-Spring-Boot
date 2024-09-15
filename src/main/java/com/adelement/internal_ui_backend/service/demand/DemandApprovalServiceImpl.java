@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adelement.internal_ui_backend.entity.demand.DemandApprovalEntity;
+import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
 import com.adelement.internal_ui_backend.model.demand.DemandApprovalStatusDTO;
 import com.adelement.internal_ui_backend.repository.demand.DemandsRepository;
 
@@ -104,7 +105,17 @@ public class DemandApprovalServiceImpl implements DemandApprovalService {
 
     @Override
     public HashMap<String, Object> getDemandsApprovalStatusWithDemandPartnerCodeWithPaginationAndFilter(String status,
-            String app_bundle, String demand_partner_id, int page, int size) {
+            String app_bundle, String code, int page, int size) {
+
+        String demand_partner_id = null;
+        if (code != null && !code.isEmpty()) {
+            DemandsEntity de = demandsRepository.findByCode(code);
+            if (de != null) {
+                demand_partner_id = de.getDemand_id().toString();
+            } else {
+                demand_partner_id = "0";
+            }
+        }
 
         List<DemandApprovalEntity> results = getFilteredAndPaginatedData(status, app_bundle,
                 demand_partner_id, page, size);
@@ -113,7 +124,7 @@ public class DemandApprovalServiceImpl implements DemandApprovalService {
 
         for (DemandApprovalEntity demandApprovalEntityItem : results) {
 
-            String code = demandsRepository.findById(demandApprovalEntityItem.getDemand_partner_id()).get().getCode();
+            String code_ = demandsRepository.findById(demandApprovalEntityItem.getDemand_partner_id()).get().getCode();
             Long id = demandApprovalEntityItem.getId();
             Long demandPartnerID = demandApprovalEntityItem.getDemand_partner_id();
             String appBundle = demandApprovalEntityItem.getApp_bundle();
@@ -122,7 +133,7 @@ public class DemandApprovalServiceImpl implements DemandApprovalService {
             String date_updated = demandApprovalEntityItem.getDate_updated();
 
             DemandApprovalStatusDTO demandApprovalStatusDTO = new DemandApprovalStatusDTO(id, demandPartnerID,
-                    appBundle, lineStatus, line_inserted, date_updated, code);
+                    appBundle, lineStatus, line_inserted, date_updated, code = code_);
 
             demandApprovalStatusDTOsList.add(demandApprovalStatusDTO);
         }
