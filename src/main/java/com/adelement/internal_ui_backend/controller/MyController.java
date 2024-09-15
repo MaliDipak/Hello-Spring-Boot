@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adelement.internal_ui_backend.entity.DemandsEntity;
-import com.adelement.internal_ui_backend.service.DemandApprovalService;
-import com.adelement.internal_ui_backend.service.DemandsService;
+import com.adelement.internal_ui_backend.service.demand.DemandApprovalService;
+import com.adelement.internal_ui_backend.service.demand.DemandsService;
 
 @RestController
 public class MyController {

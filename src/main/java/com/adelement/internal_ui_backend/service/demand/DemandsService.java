@@ -1,4 +1,4 @@
-package com.adelement.internal_ui_backend.service;
+package com.adelement.internal_ui_backend.service.demand;
 
 import java.util.List;
 
