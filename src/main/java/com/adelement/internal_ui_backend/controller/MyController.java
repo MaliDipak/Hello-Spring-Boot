@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adelement.internal_ui_backend.entity.DemandsEntity;
+import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
 import com.adelement.internal_ui_backend.service.demand.DemandApprovalService;
 import com.adelement.internal_ui_backend.service.demand.DemandsService;
 

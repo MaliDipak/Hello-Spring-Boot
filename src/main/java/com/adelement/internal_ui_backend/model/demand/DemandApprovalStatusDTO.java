@@ -1,4 +1,4 @@
-package com.adelement.internal_ui_backend.model;
+package com.adelement.internal_ui_backend.model.demand;
 
 import lombok.Data;
 

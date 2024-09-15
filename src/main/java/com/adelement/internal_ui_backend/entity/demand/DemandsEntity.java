@@ -1,4 +1,4 @@
-package com.adelement.internal_ui_backend.entity;
+package com.adelement.internal_ui_backend.entity.demand;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

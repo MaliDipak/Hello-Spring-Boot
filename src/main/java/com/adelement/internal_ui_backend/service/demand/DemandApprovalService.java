@@ -3,7 +3,7 @@ package com.adelement.internal_ui_backend.service.demand;
 import java.util.HashMap;
 import java.util.List;
 
-import com.adelement.internal_ui_backend.entity.DemandApprovalEntity;
+import com.adelement.internal_ui_backend.entity.demand.DemandApprovalEntity;
 
 public interface DemandApprovalService {
 

@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adelement.internal_ui_backend.entity.DemandApprovalEntity;
-import com.adelement.internal_ui_backend.model.DemandApprovalStatusDTO;
-import com.adelement.internal_ui_backend.repository.DemandsRepository;
+import com.adelement.internal_ui_backend.entity.demand.DemandApprovalEntity;
+import com.adelement.internal_ui_backend.model.demand.DemandApprovalStatusDTO;
+import com.adelement.internal_ui_backend.repository.demand.DemandsRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

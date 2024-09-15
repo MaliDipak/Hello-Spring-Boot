@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adelement.internal_ui_backend.entity.DemandsEntity;
-import com.adelement.internal_ui_backend.repository.DemandsRepository;
+import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
+import com.adelement.internal_ui_backend.repository.demand.DemandsRepository;
 
 @Service
 public class DemandsServiceImpl implements DemandsService {
