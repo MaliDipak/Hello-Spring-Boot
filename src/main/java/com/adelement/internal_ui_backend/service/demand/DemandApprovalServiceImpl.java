@@ -3,13 +3,18 @@ package com.adelement.internal_ui_backend.service.demand;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Arrays;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.adelement.internal_ui_backend.entity.demand.DemandApprovalEntity;
 import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
 import com.adelement.internal_ui_backend.model.demand.DemandApprovalStatusDTO;
+import com.adelement.internal_ui_backend.repository.demand.DemandApprovalRepository;
 import com.adelement.internal_ui_backend.repository.demand.DemandsRepository;
 
 import jakarta.persistence.EntityManager;
@@ -24,6 +29,9 @@ public class DemandApprovalServiceImpl implements DemandApprovalService {
 
     @Autowired
     DemandsRepository demandsRepository;
+
+    @Autowired
+    DemandApprovalRepository demandApprovalRepository;
 
     @Override
     public List<DemandApprovalEntity> getFilteredAndPaginatedData(String status, String app_bundle,
@@ -148,6 +156,25 @@ public class DemandApprovalServiceImpl implements DemandApprovalService {
         response.put("totalRecords", totalRecords);
         response.put("data", demandApprovalStatusDTOsList);
 
+        return response;
+    }
+
+    @Override
+    public HashMap<String, Object> updateStatus(Long id, String status) {
+        HashMap<String, Object> response = new HashMap<>();
+        try {
+            demandApprovalRepository.findById(id).map(record -> {
+                record.setStatus(status);
+                return demandApprovalRepository.save(record);
+            }).orElseThrow(() -> null);
+
+            response.put("isUpdated", true);
+            response.put("message", "Status updated successfully");
+
+        } catch (Exception e) {
+            response.put("isUpdated", false);
+            response.put("message", "Record not found!");
+        }
         return response;
     }
 

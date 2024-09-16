@@ -16,4 +16,6 @@ public interface SupplyApprovalService {
         HashMap<String, Object> getSupplyApprovalStatusWithSupplyPartnerCodeWithPaginationAndFilter(String status,
                         String app_bundle, String code, int page, int size);
 
+        HashMap<String, Object> updateStatus(Long id, String status);
+
 }

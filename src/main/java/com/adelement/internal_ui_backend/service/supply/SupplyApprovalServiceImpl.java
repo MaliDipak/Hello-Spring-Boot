@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.adelement.internal_ui_backend.entity.supply.SupplyApprovalEntity;
 import com.adelement.internal_ui_backend.entity.supply.SupplyPartnerEntity;
 import com.adelement.internal_ui_backend.model.supply.SupplyApprovalStatusDTO;
-
+import com.adelement.internal_ui_backend.repository.supply.SupplyApprovalRepository;
 import com.adelement.internal_ui_backend.repository.supply.SupplyPartnerRepository;
 
 import jakarta.persistence.EntityManager;
@@ -25,6 +25,9 @@ public class SupplyApprovalServiceImpl implements SupplyApprovalService {
 
     @Autowired
     SupplyPartnerRepository supplyPartnerRepository;
+
+    @Autowired
+    SupplyApprovalRepository supplyApprovalRepository;
 
     @Override
     public long getTotalCount(String status, String app_bundle, String supply_partner_id) {
@@ -153,4 +156,22 @@ public class SupplyApprovalServiceImpl implements SupplyApprovalService {
         return response;
     }
 
+    @Override
+    public HashMap<String, Object> updateStatus(Long id, String status) {
+        HashMap<String, Object> response = new HashMap<>();
+        try {
+            supplyApprovalRepository.findById(id).map(record -> {
+                record.setStatus(status);
+                return supplyApprovalRepository.save(record);
+            }).orElseThrow(() -> null);
+
+            response.put("isUpdated", true);
+            response.put("message", "Status updated successfully");
+
+        } catch (Exception e) {
+            response.put("isUpdated", false);
+            response.put("message", "Record not found!");
+        }
+        return response;
+    }
 }

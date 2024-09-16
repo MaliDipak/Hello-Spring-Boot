@@ -15,4 +15,6 @@ public interface DemandApprovalService {
 
         HashMap<String, Object> getDemandsApprovalStatusWithDemandPartnerCodeWithPaginationAndFilter(String status,
                         String app_bundle, String code, int page, int size);
+
+        HashMap<String, Object> updateStatus(Long id, String status);
 }
