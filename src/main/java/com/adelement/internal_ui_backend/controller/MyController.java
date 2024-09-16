@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adelement.internal_ui_backend.entity.demand.DemandApprovalEntity;
 import com.adelement.internal_ui_backend.entity.demand.DemandsEntity;
 import com.adelement.internal_ui_backend.entity.supply.SupplyPartnerEntity;
 import com.adelement.internal_ui_backend.service.demand.DemandApprovalService;
