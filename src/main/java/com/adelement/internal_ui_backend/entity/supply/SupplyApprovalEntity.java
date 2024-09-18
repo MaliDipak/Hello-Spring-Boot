@@ -1,5 +1,7 @@
 package com.adelement.internal_ui_backend.entity.supply;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,5 +21,7 @@ public class SupplyApprovalEntity {
     private String app_bundle;
     private String status;
     private String line_inserted;
+
+    @UpdateTimestamp
     private String date_updated;
 }

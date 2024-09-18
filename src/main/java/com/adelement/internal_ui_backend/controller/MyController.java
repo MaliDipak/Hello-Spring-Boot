@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,6 +45,7 @@ public class MyController {
         return ResponseEntity.ok(supplyPartnerService.findAllSupplyPartners());
     }
 
+    @CrossOrigin("http://localhost:3000")
     @GetMapping("demand")
     public ResponseEntity<HashMap<String, Object>> getNativeProducts(
             @RequestParam(required = false) String status,
@@ -59,6 +61,7 @@ public class MyController {
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
+    @CrossOrigin("http://localhost:3000")
     @GetMapping("supply")
     public ResponseEntity<HashMap<String, Object>> getSupplyApprovalStatusRecords(
             @RequestParam(required = false) String status,
@@ -74,6 +77,7 @@ public class MyController {
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
+    @CrossOrigin("http://localhost:3000")
     @PutMapping("demand/{id}")
     public ResponseEntity<HashMap<String, Object>> updateDemandStatus(@PathVariable Long id,
             @RequestParam String status) {
@@ -88,6 +92,7 @@ public class MyController {
         return new ResponseEntity<>(demandApprovalService.updateStatus(id, status), HttpStatus.OK);
     }
 
+    @CrossOrigin("http://localhost:3000")
     @PutMapping("supply/{id}")
     public ResponseEntity<HashMap<String, Object>> updateSupplyStatus(@PathVariable Long id,
             @RequestParam String status) {
